@@ -4,9 +4,6 @@ info:
   description: >-
     Esta api nos proporcionará las posiciones de los distintos dispositivos conectados para generar un mapa de calor.
   version: '1.0'
-servers:
-  - url: '/api/v1'
-    description: Version1
 tags:
   - name: Map
 paths:
