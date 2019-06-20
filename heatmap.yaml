@@ -2,8 +2,13 @@ openapi: 3.0.2
 info:
   title: Heatmap API
   description: >-
-    Esta api nos proporcionará las posiciones de los distintos dispositivos conectados para generar un mapa de calor.
+    This api provides us with the set of positions and frequencies of the different connected devices to generate a heat map.
   version: '1.0'
+  termsOfService: 'http://spilab.es/'
+  contact:
+    name: Tuiter 
+    url: 'http://spilab.es/'
+    email: spilab.uex@gmail.com
 tags:
   - name: Map
 paths:
@@ -11,7 +16,7 @@ paths:
     get:
       tags:
         - Map
-      summary: Get the locations
+      summary: Get the locations frequency
       operationId: getLocations
       parameters:
         - name: beginDate
