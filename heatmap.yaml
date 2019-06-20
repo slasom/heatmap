@@ -13,6 +13,47 @@ paths:
         - Map
       summary: Get the locations
       operationId: getLocations
+      parameters:
+        - name: beginDate
+          in: query
+          description: fecha incio
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2019-07-21T17:32:28Z'
+        - name: endDate
+          in: query
+          description: fecha fin
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2019-07-21T17:32:28Z'
+        - name: latitude
+          in: query
+          description: latitude
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 38.48492
+        - name: longitude
+          in: query
+          description: longitude
+          required: true
+          schema:
+            type: number
+            format: double
+            example: -6.2548987
+        - name: radius
+          in: query
+          description: radius
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 12
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -20,25 +61,25 @@ paths:
           $ref: '#/components/responses/404'
 components:
   schemas:
-    Locations:
+    LocationsFrequency:
       type: array
       items:
-        $ref: '#/components/schemas/Location'
-    Location:
+        $ref: '#/components/schemas/LocationFrequency'
+    LocationFrequency:
       type: object
       properties:
         latitude:
           type: number
-          format: float
+          format: double
           example: 38.48492
         longitude:
           type: number
-          format: float
+          format: double
           example: -6.2548987
-        date:
-          type: string
-          format: date-time
-          example: '2019-07-21T17:32:28Z'
+        frequency:
+          type: integer
+          format: int64
+          example: 6
 
   responses:
     '200':
@@ -46,7 +87,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Locations'
+            $ref: '#/components/schemas/LocationsFrequency'
     '404':
       description: Not found response
       content:
