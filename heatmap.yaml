@@ -16,7 +16,7 @@ paths:
       parameters:
         - name: beginDate
           in: query
-          description: fecha incio
+          description: init date
           required: true
           schema:
             type: string
@@ -24,7 +24,7 @@ paths:
             example: '2019-07-21T17:32:28Z'
         - name: endDate
           in: query
-          description: fecha fin
+          description: end date
           required: true
           schema:
             type: string
