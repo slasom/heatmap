@@ -3,7 +3,7 @@ info:
   title: Heatmap API
   description: >-
     This api provides us with the set of positions and frequencies of the different connected devices to generate a heat map.
-  version: '1.0'
+  version: '3.0'
   termsOfService: 'http://spilab.es/'
   contact:
     name: Heatmap 
