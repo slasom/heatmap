@@ -17,7 +17,7 @@ paths:
       tags:
         - Map
       summary: Get the locations frequency processed in the aggregator
-      operationId: getLocations
+      operationId: getSCHeatmaps
       parameters:
         - name: beginDate
           in: query
@@ -69,7 +69,7 @@ paths:
       tags:
         - Map
       summary: Get the locations frequency processed in the different connected devices.
-      operationId: getHeatmap
+      operationId: getMCHeatmaps
       parameters:
         - name: beginDate
           in: query
