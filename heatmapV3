@@ -59,6 +59,22 @@ paths:
             type: number
             format: double
             example: 12
+        - name: devices
+          in: query
+          description: number of devices
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 6
+        - name: timeout
+          in: query
+          description: timeout request (ms)
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 2500
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -111,6 +127,22 @@ paths:
             type: number
             format: double
             example: 12
+        - name: devices
+          in: query
+          description: number of devices
+          required: true
+          schema:
+            type: integer
+            format: int32
+            example: 6
+        - name: timeout
+          in: query
+          description: timeout request (ms)
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 2500
       responses:
         '200':
           $ref: '#/components/responses/200'
