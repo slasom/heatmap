@@ -12,7 +12,7 @@ info:
 tags:
   - name: Map
 paths:
-  /locations:
+  /sc-heatmaps:
     get:
       tags:
         - Map
@@ -64,7 +64,7 @@ paths:
           $ref: '#/components/responses/200'
         '404':
           $ref: '#/components/responses/404'
-  /heatmaps:
+  /mc-heatmaps:
     get:
       tags:
         - Map
@@ -137,22 +137,6 @@ components:
           type: integer
           format: int64
           example: 6
-    Locations:
-      type: array
-      items:
-        $ref: '#/components/schemas/Location'
-    Location:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-          example: 38.48492
-        longitude:
-          type: number
-          format: double
-          example: -6.2548987
-        
   responses:
     '200':
       description: Successful response
