@@ -12,7 +12,7 @@ info:
 tags:
   - name: Map
 paths:
-  /sc-heatmaps:
+  /sc/heatmaps:
     get:
       tags:
         - Map
@@ -80,7 +80,7 @@ paths:
           $ref: '#/components/responses/200'
         '404':
           $ref: '#/components/responses/404'
-  /mc-heatmaps:
+  /mc/heatmaps:
     get:
       tags:
         - Map
