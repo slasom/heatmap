@@ -78,6 +78,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '204':
+          $ref: '#/components/responses/204'
         '404':
           $ref: '#/components/responses/404'
   /mc/heatmaps:
@@ -146,6 +148,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200'
+        '204':
+          $ref: '#/components/responses/204'
         '404':
           $ref: '#/components/responses/404'
 components:
@@ -176,6 +180,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/LocationsFrequency'
+    '204':
+      description: No content
+      content:
+        text/plain:
+          schema:
+            title: No content
+            type: string
     '404':
       description: Not found response
       content:
