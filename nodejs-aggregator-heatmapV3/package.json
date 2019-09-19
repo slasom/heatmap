@@ -1,0 +1,25 @@
+{
+  "name": "heatmap-api",
+  "description": "This api provides us with the set of positions and frequencies of the different connected devices to generate a heat map.",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "OAI"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.17.0",
+    "js-yaml": "^3.3.0",
+    "mosca": "^2.x",
+    "mqtt": "^2.18.8",
+    "oas-tools": "^2.1.5",
+    "swagger-stats": "0.95.7",
+    "ip": "^1.x"
+  }
+}

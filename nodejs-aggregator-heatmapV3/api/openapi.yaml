@@ -1,0 +1,275 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: spilab.uex@gmail.com
+    name: Heatmap
+    url: http://spilab.es/
+  description: This api provides us with the set of positions and frequencies of the
+    different connected devices to generate a heat map.
+  termsOfService: http://spilab.es/
+  title: Heatmap API
+  version: "3.0"
+servers:
+- url: /
+tags:
+- name: Map
+paths:
+  /{technology}/mc/heatmaps:
+    get:
+      operationId: getMCHeatmaps
+      parameters:
+      - description: init date
+        explode: true
+        in: query
+        name: beginDate
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: end date
+        explode: true
+        in: query
+        name: endDate
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: latitude
+        explode: true
+        in: query
+        name: latitude
+        required: true
+        schema:
+          example: 38.48492
+          format: double
+          type: number
+        style: form
+      - description: longitude
+        explode: true
+        in: query
+        name: longitude
+        required: true
+        schema:
+          example: -6.2548987
+          format: double
+          type: number
+        style: form
+      - description: radius
+        explode: true
+        in: query
+        name: radius
+        required: true
+        schema:
+          example: 12
+          format: double
+          type: number
+        style: form
+      - description: number of devices
+        explode: true
+        in: query
+        name: devices
+        required: true
+        schema:
+          example: 6
+          format: int32
+          type: integer
+        style: form
+      - description: timeout request (ms)
+        explode: true
+        in: query
+        name: timeout
+        required: true
+        schema:
+          example: 2500
+          format: double
+          type: number
+        style: form
+      - description: Choose firebase or mqtt
+        explode: false
+        in: path
+        name: technology
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsFrequency'
+          description: Successful response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: No content
+                type: string
+          description: No content
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+      summary: Get the locations frequency processed in the different connected devices.
+      tags:
+      - Map
+      x-swagger-router-controller: Map
+  /{technology}/sc/heatmaps:
+    get:
+      operationId: getSCHeatmaps
+      parameters:
+      - description: init date
+        explode: true
+        in: query
+        name: beginDate
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: end date
+        explode: true
+        in: query
+        name: endDate
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: latitude
+        explode: true
+        in: query
+        name: latitude
+        required: true
+        schema:
+          example: 38.48492
+          format: double
+          type: number
+        style: form
+      - description: longitude
+        explode: true
+        in: query
+        name: longitude
+        required: true
+        schema:
+          example: -6.2548987
+          format: double
+          type: number
+        style: form
+      - description: radius
+        explode: true
+        in: query
+        name: radius
+        required: true
+        schema:
+          example: 12
+          format: double
+          type: number
+        style: form
+      - description: number of devices
+        explode: true
+        in: query
+        name: devices
+        required: true
+        schema:
+          example: 6
+          format: int32
+          type: integer
+        style: form
+      - description: timeout request (ms)
+        explode: true
+        in: query
+        name: timeout
+        required: true
+        schema:
+          example: 2500
+          format: double
+          type: number
+        style: form
+      - description: Choose firebase or mqtt
+        explode: false
+        in: path
+        name: technology
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsFrequency'
+          description: Successful response
+        204:
+          content:
+            text/plain:
+              schema:
+                title: No content
+                type: string
+          description: No content
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+      summary: Get the locations frequency processed in the aggregator
+      tags:
+      - Map
+      x-swagger-router-controller: Map
+components:
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LocationsFrequency'
+      description: Successful response
+    204:
+      content:
+        text/plain:
+          schema:
+            title: No content
+            type: string
+      description: No content
+    404:
+      content:
+        text/plain:
+          schema:
+            example: Not found
+            title: Endpoint not found
+            type: string
+      description: Not found response
+  schemas:
+    LocationsFrequency:
+      items:
+        $ref: '#/components/schemas/LocationFrequency'
+      type: array
+    LocationFrequency:
+      example:
+        latitude: 38.48492
+        longitude: -6.2548987
+        frequency: 6
+      properties:
+        latitude:
+          example: 38.48492
+          format: double
+          type: number
+        longitude:
+          example: -6.2548987
+          format: double
+          type: number
+        frequency:
+          example: 6
+          format: int64
+          type: integer
+      type: object
