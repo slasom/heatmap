@@ -152,6 +152,28 @@ paths:
           $ref: '#/components/responses/204'
         '404':
           $ref: '#/components/responses/404'
+  /restart:
+    post:
+      tags:
+        - Device
+      summary: Restart app in to mobile devices.
+      operationId: restartApp
+      parameters:
+        - name: timeout
+          in: query
+          description: wait time to start app after close (ms)
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 100
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '204':
+          $ref: '#/components/responses/204'
+        '404':
+          $ref: '#/components/responses/404'
 components:
   schemas:
     LocationsFrequency:
@@ -174,6 +196,13 @@ components:
           format: int64
           example: 6
   responses:
+    '201':
+      description: Posted
+      content:
+        text/plain:
+          schema:
+            title: Posted
+            type: string
     '200':
       description: Successful response
       content:
