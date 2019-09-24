@@ -168,10 +168,8 @@ paths:
             format: double
             example: 100
       responses:
-        '200':
-          $ref: '#/components/responses/200'
-        '204':
-          $ref: '#/components/responses/204'
+        '201':
+          $ref: '#/components/responses/201'
         '404':
           $ref: '#/components/responses/404'
 components:
