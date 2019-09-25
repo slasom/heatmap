@@ -159,7 +159,7 @@ paths:
       summary: Restart app in to mobile devices.
       operationId: restartApp
       parameters:
-        - name: timeout
+        - name: waittime
           in: query
           description: wait time to start app after close (ms)
           required: true
