@@ -172,6 +172,28 @@ paths:
           $ref: '#/components/responses/201'
         '404':
           $ref: '#/components/responses/404'
+  /savelogs:
+    post:
+      tags:
+        - Device
+      summary: Save Logs.
+      operationId: saveLogs
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '404':
+          $ref: '#/components/responses/404'
+  /deletelogs:
+    post:
+      tags:
+        - Device
+      summary: Delete Logs.
+      operationId: deleteLogs
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '404':
+          $ref: '#/components/responses/404'
 components:
   schemas:
     LocationsFrequency:
