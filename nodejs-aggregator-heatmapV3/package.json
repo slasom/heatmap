@@ -12,14 +12,16 @@
   "license": "Unlicense",
   "private": true,
   "dependencies": {
-    "connect": "^3.2.0",
     "body-parser": "^1.18.3",
+    "connect": "^3.2.0",
     "express": "^4.17.0",
+    "fs": "0.0.1-security",
+    "ip": "^1.x",
     "js-yaml": "^3.3.0",
     "mosca": "^2.x",
     "mqtt": "^2.18.8",
+    "node-datetime": "^2.1.2",
     "oas-tools": "^2.1.5",
-    "swagger-stats": "0.95.7",
-    "ip": "^1.x"
+    "swagger-stats": "0.95.7"
   }
 }

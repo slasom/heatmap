@@ -52,18 +52,25 @@ function processReply (result,method,params){
 
     var beginHR = process.hrtime()
     var begin = beginHR[0] * 1000000 + beginHR[1] / 1000;
+
+    var size_body=JSON.stringify(result).length;//other params 36 bytes
+
+   var size_array
     
+      
     switch(method){
         case "getSCHeatmaps":
             result=manager.convertLocations(result,params)
             result=manager.filterHeatMap(result,params)
+            size_array=result.length
             result=manager.buildHeatMap(result)
             
             break;
             
         case "getMCHeatmaps":
             result=manager.convertLocationFrequency(result)
-            result=manager.aggregateLocations(result)
+            size_array=result.length
+            result=manager.buildHeatMapV2(result)
         break;
 
     }
@@ -71,11 +78,12 @@ function processReply (result,method,params){
     var endHR = process.hrtime()
         var end = endHR[0] * 1000000 + endHR[1] / 1000;
         var duration = (end - begin) / 1000;
-        var roundedDuration = Math.round(duration * 1000) / 1000;
+        var tCloud = Math.round(duration * 1000) / 1000;
 
-        console.log("Cloud Computing Duration: "+roundedDuration)
+    
+	console.log("size array: "+size_array)
 
-    return result
+    return [result,tCloud,size_body,size_array]
 
 }
 

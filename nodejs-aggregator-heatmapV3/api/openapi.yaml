@@ -14,6 +14,38 @@ servers:
 tags:
 - name: Map
 paths:
+  /{technology}/savelogs:
+    post:
+      operationId: saveLogs
+      parameters:
+      - description: Choose firebase or mqtt
+        explode: false
+        in: path
+        name: technology
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                title: Posted
+                type: string
+          description: Posted
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+      summary: Save Logs.
+      tags:
+      - Device
+      x-swagger-router-controller: Device
   /{technology}/mc/heatmaps:
     get:
       operationId: getMCHeatmaps
@@ -120,6 +152,80 @@ paths:
       tags:
       - Map
       x-swagger-router-controller: Map
+  /{technology}/restart:
+    post:
+      operationId: restartApp
+      parameters:
+      - description: wait time to start app after close (ms)
+        explode: true
+        in: query
+        name: waittime
+        required: true
+        schema:
+          example: 100
+          format: double
+          type: number
+        style: form
+      - description: Choose firebase or mqtt
+        explode: false
+        in: path
+        name: technology
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                title: Posted
+                type: string
+          description: Posted
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+      summary: Restart app in to mobile devices.
+      tags:
+      - Device
+      x-swagger-router-controller: Device
+  /{technology}/deletelogs:
+    post:
+      operationId: deleteLogs
+      parameters:
+      - description: Choose firebase or mqtt
+        explode: false
+        in: path
+        name: technology
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                title: Posted
+                type: string
+          description: Posted
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+      summary: Delete Logs.
+      tags:
+      - Device
+      x-swagger-router-controller: Device
   /{technology}/sc/heatmaps:
     get:
       operationId: getSCHeatmaps
@@ -234,6 +340,13 @@ components:
           schema:
             $ref: '#/components/schemas/LocationsFrequency'
       description: Successful response
+    201:
+      content:
+        text/plain:
+          schema:
+            title: Posted
+            type: string
+      description: Posted
     204:
       content:
         text/plain:

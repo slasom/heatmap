@@ -72,6 +72,67 @@ exports.buildHeatMap= function(locations){
 
 }
 
+exports.buildHeatMapV2= function(locations){
+
+    //Generate heatmap
+    var hmm = new Map(); // HeatMapMatrix[latitude][longitude]
+
+    locations.map(blurLocation).forEach((location) => {
+        
+        if (hmm.has(location.latitude)) {
+            if (hmm.get(location.latitude).has(location.longitude)) {
+                hmm.get(location.latitude).set(location.longitude,
+                    hmm.get(location.latitude).get(location.longitude) + location.frequency);
+            }
+            /* else {
+                hmm.get(location.latitude).set(location.longitude, location.frequency);
+            } */
+        }
+        else {
+            hmm.set(location.latitude, new Map([
+                [location.longitude, location.frequency]
+            ]));
+        }
+    });
+
+
+    var heatmap = [];
+
+    hmm.forEach((latitudeMap, latitude) => {
+        latitudeMap.forEach((frequency, longitude) => {
+            heatmap.push({
+                "latitude": latitude,
+                "longitude": longitude,
+                "frequency": frequency
+            });
+        });
+    });
+
+    return heatmap
+
+
+}
+
+exports.aggregateLocations = function (locations){
+    var locationFreqs = [];
+
+
+    locations.forEach((element)=>{
+        var location = searchLocation(locationFreqs, element);
+        if (location != null) {
+            location.frequency = location.frequency+element.frequency
+
+        } else {
+            locationFreqs.push(element);
+        }
+    })
+
+
+    //console.log(locationFreqs)
+    return locationFreqs
+}
+
+
 
 exports.filterHeatMap = function(result,params){
 
@@ -104,28 +165,6 @@ exports.filterHeatMap = function(result,params){
     return results;
 
 }
-
-
-exports.aggregateLocations = function (locations){
-    var locationFreqs = [];
-
-
-    locations.forEach((element)=>{
-        var location = searchLocation(locationFreqs, element);
-        if (location != null) {
-            location.frequency = location.frequency+element.frequency
-
-        } else {
-            locationFreqs.push(element);
-        }
-    })
-
-
-    //console.log(locationFreqs)
-    return locationFreqs
-}
-
-
 
 
 function searchLocation (locations, location){

@@ -80,26 +80,17 @@ mqttApp.subscribe('result')
 mqttApp.on('message', function (topic, message) {
     console.log("Result received from MQTT")
     message= message.toString('utf8')
-    reply.insertReply(JSON.parse(message))
+    
+    var body=JSON.parse(message);
+    var devices=body.devices
+
+    var length=reply.insertReply(body)
+
+    if(length==devices)
+        sender.sendResult(body.idRequest,devices)
+
 });
 
-// //Listen FCM Results
-// app.post('/result', function (req, res) {
-
-//     console.log("Result received from FCM")
-//     var length=reply.insertReply(req.body)
-
-//     var devices=req.body.devices;
-
-//     console.log("Size: "+ JSON.stringify(req.body).length)
-
-//     if(length==devices)
-//         sender.sendResultV2(req.body.idRequest)
-  
-//     res.status(201).send({
-//         message: 'Sent correctly!'
-//     });
-// });
 
 
 //MQTT connection for Mqtt Request

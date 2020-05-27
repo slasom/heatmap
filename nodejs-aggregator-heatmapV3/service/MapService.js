@@ -45,8 +45,10 @@ app.post('/resultgetMCHeatmaps', function (req, res) {
 
     console.log("Size: "+ JSON.stringify(req.body).length + " B")
 
+    
+
     if(length==devices)
-        sender.sendResult(req.body.idRequest)
+        sender.sendResult(req.body.idRequest,devices)
   
     res.status(201).send({
         message: 'Sent correctly!'
@@ -91,7 +93,7 @@ app.post('/resultgetSCHeatmaps', function (req, res) {
     console.log("Size: "+ JSON.stringify(req.body).length + " B")
 
     if(length==devices)
-        sender.sendResult(req.body.idRequest)
+        sender.sendResult(req.body.idRequest,devices)
   
     res.status(201).send({
         message: 'Sent correctly!'
